@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-06T08:35:49.000Z</updated>
+  <updated>2016-06-08T06:25:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,238 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git命令整理</title>
+    <link href="http://yoursite.com/2016/06/08/Git%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/"/>
+    <id>http://yoursite.com/2016/06/08/Git命令整理/</id>
+    <published>2016-06-08T05:47:41.000Z</published>
+    <updated>2016-06-08T06:25:48.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Git命令大全&quot;&gt;&lt;a href=&quot;#Git命令大全&quot; class=&quot;headerlink&quot; title=&quot;Git命令大全&quot;&gt;&lt;/a&gt;Git命令大全&lt;/h1&gt;&lt;p&gt;安装 &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo yum install git&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;更新&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git clone git://git.kernel.org/pub/scm/git/git.git&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;帮助&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git help &lt;code&gt;add&lt;/code&gt;&lt;br&gt;git &lt;code&gt;add&lt;/code&gt; –help&lt;br&gt;man git-&lt;code&gt;add&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;add&lt;/code&gt;可以换成其他命令如:&lt;code&gt;merge&lt;/code&gt;,&lt;code&gt;commit&lt;/code&gt;等&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;更新改动到本地仓库&quot;&gt;&lt;a href=&quot;#更新改动到本地仓库&quot; class=&quot;headerlink&quot; title=&quot;更新改动到本地仓库&quot;&gt;&lt;/a&gt;更新改动到本地仓库&lt;/h2&gt;&lt;p&gt;在现有目录中初始化仓库&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git init&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;查看本地的被跟踪文件&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git ls-files&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;查看目前仓库当前分支的状态&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git status&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;添加需要被跟踪的文件someFile.xx&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git add someFile.xx&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;添加需要被跟踪的目录someFilePath&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git add someFileePath&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;添加本目录下所有需要被跟踪的文件&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git add .&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;以上的3个命令如果文件已被跟踪则命令为添加改变到暂存区&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;code&gt;git add&lt;/code&gt;是个多功能命令：可以用它开始跟踪新文件，或者把已跟踪的文件放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;现在你想切换分支，但是你还不想提交你正在进行中的工作；所以你储藏这些变更。为了往堆栈推送一个新的储藏，只要运行 git stash&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git stash&lt;br&gt;git stash list  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;应用储藏表示回到之前的修改的状态，工作区上的文件复原，但是都是未暂存状态，如果之前的文件有暂存的状态，那么想恢复暂存状态-看下一条  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git stash apply&lt;br&gt;git stash apply &lt;code&gt;stashName&lt;/code&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对文件的变更被重新应用，但是被暂存的文件没有重新被暂存。想那样的话，你必须在运行 git stash apply 命令时带上一个 –index 的选项来告诉命令重新应用被暂存的变更 &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git stash apply –index &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;丢弃stash &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git stash drop &lt;code&gt;stash@{0}&lt;/code&gt;&lt;br&gt;git stash pop&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;把暂存区的改变提交到仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git commit &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这会显示一个可以输入大段文字的窗口，让你可以输入注释与提交说明&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git commit -m”提交说明,注释”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;跳过使用暂存区域：&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git commit -a -m”提交说明,注释”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;尽管使用暂存区域的方式可以精心准备要提交的细节，但有时候这么做略显繁琐。Git 提供了一个跳过使用暂存区域的方式，只要在提交的时候，给 &lt;code&gt;git commit&lt;/code&gt;加上 &lt;code&gt;-a&lt;/code&gt; 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 &lt;code&gt;git add&lt;/code&gt; 步骤&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;移除对某些文件的跟踪&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;文件/目录&lt;/code&gt;未被跟踪前配置好&lt;code&gt;.gitignore&lt;/code&gt;文件,如果之前已经跟踪过 ,则需要先移除这个&lt;code&gt;文件/目录&lt;/code&gt;的跟踪,然后再配置&lt;code&gt;.gitignore&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;移除文件的跟踪&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git rm –cached &lt;code&gt;someFile.xx&lt;/code&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;移除目录的跟踪&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git rm -r –cached &lt;code&gt;/Users/Ben/Documents/GoGitService/smartSleep/SmartSleep.xcworkspace/xcuserdata&lt;/code&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;-r表示allow recursive removal 递归移除文件目录下所有文件的跟踪&lt;/p&gt;
+&lt;p&gt;需要注意的是：&lt;strong&gt;这2个命令移除的跟踪只针对当前的分支有效，如果你有另外一个分支，那么另外的分支还是会跟踪这些文件，你需要在另外的分支中执行相同的命令移除跟踪&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如何配置&lt;code&gt;.gitignore&lt;/code&gt;文件&lt;/p&gt;
+&lt;p&gt;文件 .gitignore 的格式规范如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所有空行或者以注释符号 ＃ 开头的行都会被 Git 忽略。&lt;/li&gt;
+&lt;li&gt;可以使用标准的 glob 模式匹配。&lt;/li&gt;
+&lt;li&gt;匹配模式最后跟反斜杠（/）说明要忽略的是目录。&lt;/li&gt;
+&lt;li&gt;要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;技巧：&lt;br&gt;目录是从仓库的根目录开始，去除前面的&lt;em&gt;本机到根目录&lt;/em&gt;的路径，在移除跟踪之后用&lt;code&gt;git status&lt;/code&gt; 查看，有个目录的状态为修改状态，粘贴这个目录到&lt;code&gt;.gitignore&lt;/code&gt;文件就好了&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;本地关于取消修改的操作&quot;&gt;&lt;a href=&quot;#本地关于取消修改的操作&quot; class=&quot;headerlink&quot; title=&quot;本地关于取消修改的操作&quot;&gt;&lt;/a&gt;本地关于取消修改的操作&lt;/h2&gt;&lt;p&gt;修改最后一次提交&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git commit –amend&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;取消已经暂存的文件&lt;code&gt;file.xx&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git reset HEAD &lt;code&gt;file.xx&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;取消对文件的修改&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git checkout – &lt;code&gt;file.xx&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;查看版本历史&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git log&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;版本回退到上一个版本&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git reset –hard HEAD^  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;回退到某个特定的版本&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git reset –hard 3b8794&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果想撤销回退那么&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git reflog&lt;br&gt;这命令会显示你的每一步操作,找到对应的MD5，用上一个命令返回就好&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;本地关于分支的操作&quot;&gt;&lt;a href=&quot;#本地关于分支的操作&quot; class=&quot;headerlink&quot; title=&quot;本地关于分支的操作&quot;&gt;&lt;/a&gt;本地关于分支的操作&lt;/h2&gt;&lt;p&gt;查看分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git branch&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;创建分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git branch &lt;code&gt;theBrach&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;删除分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git branch -d &lt;code&gt;theBranch&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;切换分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git checkout &lt;code&gt;master&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;合并分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git merge &lt;code&gt;theBranch&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;创建分支并切换&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git checkout -b &lt;code&gt;aBranch&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;与远程仓库交互&quot;&gt;&lt;a href=&quot;#与远程仓库交互&quot; class=&quot;headerlink&quot; title=&quot;与远程仓库交互&quot;&gt;&lt;/a&gt;与远程仓库交互&lt;/h2&gt;&lt;p&gt;查看远程仓库&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git remote&lt;br&gt;git remote -v&lt;br&gt;git remote show &lt;code&gt;[remote-name]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从远程仓库克隆&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git clone \&lt;url&gt; \&lt;customname or=&quot;&quot; nil=&quot;&quot;&gt;&lt;br&gt;git clone &lt;a href=&quot;https://github.com/libgit2/libgit2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/libgit2/libgit2&lt;/a&gt; selfStocke&lt;/customname&gt;&lt;/url&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;添加远程仓库&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git remote add &lt;code&gt;[remote-name]&lt;/code&gt; &lt;code&gt;[url]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;[remote-name]&lt;/code&gt; 用来指代 &lt;code&gt;[url]&lt;/code&gt;,是远程仓库的名称&lt;/p&gt;
+&lt;p&gt;本地也有一个远程仓库，可以用&lt;code&gt;git branch -a&lt;/code&gt;查看，但是我们是无法更改的！&lt;/p&gt;
+&lt;p&gt;添加远程分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git push &lt;code&gt;远程仓库名&lt;/code&gt; &lt;code&gt;分支名&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里其实走了一点捷径。Git 自动把 serverfix 分支名扩展为 refs/heads/serverfix:refs/heads/serverfix，意为“取出我在本地的 serverfix 分支，推送到远程仓库的 serverfix 分支中去”。我们将在第九章进一步介绍 refs/heads/ 部分的细节，不过一般使用的时候都可以省略它。也可以运行 git push origin serverfix:serverfix 来实现相同的效果，它的意思是“上传我本地的 serverfix 分支到远程仓库中去，仍旧称它为 serverfix 分支”。通过此语法，你可以把本地分支推送到某个命名不同的远程分支：若想把远程分支叫作 awesomebranch，可以用 git push origin serverfix:awesomebranch 来推送数据。&lt;/p&gt;
+&lt;p&gt;删除远程分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git push &lt;code&gt;远程名&lt;/code&gt; :&lt;code&gt;分支名&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;咚！服务器上的分支没了。你最好特别留心这一页，因为你一定会用到那个命令，而且你很可能会忘掉它的语法。有种方便记忆这条命令的方法：记住我们不久前见过的 git push [远程名] [本地分支]:[远程分支] 语法，如果省略 [本地分支]，那就等于是在说“在这里提取空白然后把它变成[远程分支]”&lt;/p&gt;
+&lt;p&gt;拉取远程的更新到本地的“远程仓库”&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git fetch &lt;code&gt;[remote-name]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;此命令会到远程仓库中拉取所有你本地仓库中还没有的数据。运行完成后，你就可以在本地访问该远程仓库中的所有分支，将其中某个分支合并到本地，或者只是取出某个分支，一探究竟。&lt;strong&gt;fetch 命令只是将远端的数据拉到本地仓库，并不自动合并到当前工作分支，只有当你确实准备好了，才能手工合并&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;拉取数据并自动合并&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git pull &lt;code&gt;[remote-name]&lt;/code&gt; &lt;code&gt;[branch-name]&lt;/code&gt;&lt;br&gt;git pull&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果设置了某个分支用于跟踪某个远端仓库的分支，可以使用 git pull 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支。在日常工作中我们经常这么用，既快且好。实际上，默认情况下 git clone 命令本质上就是自动创建了本地的 master 分支用于跟踪远程仓库中的 master 分支（假设远程仓库确实有 master 分支）。所以一般我们运行 git pull，目的都是要从原始克隆的远端仓库中抓取数据后，合并到工作目录中的当前分支。&lt;/p&gt;
+&lt;p&gt;设置本地分支跟踪远程分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git checkout -b &lt;code&gt;[本地分支名]&lt;/code&gt; &lt;code&gt;[远程仓库名]&lt;/code&gt;/&lt;code&gt;[远程分支名]&lt;/code&gt;&lt;br&gt;git checkout -b sf origin/serverfix&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Branch sf set up to track remote branch serverfix from origin.&lt;br&gt;Switched to a new branch ‘sf’&lt;br&gt;这命令的意思应该是新建本地分支并跟踪远程分支&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git checkout –track origin/serverfix&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Branch serverfix set up to track remote branch serverfix from origin.&lt;br&gt;Switched to a new branch ‘serverfix’&lt;/p&gt;
+&lt;p&gt;设置已有的本地分支跟踪一个刚刚拉取下来的远程分支，或者想要修改正在跟踪的上游分支，你可以在任意时间使用 -u 或 –set-upstream-to 选项运行 git branch 来显式地设置。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git branch -u origin/serverfix&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Branch serverfix set up to track remote branch serverfix from origin.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git branch –set-upstream master origin/master&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这个命令也可以&lt;br&gt;&lt;strong&gt;推送数据到远程仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git push &lt;code&gt;[remote-name]&lt;/code&gt; &lt;code&gt;[local_branch-name]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;远程仓库的删除和重命名&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git remote rm &lt;code&gt;[remote-name]&lt;/code&gt;&lt;br&gt;git remote rename &lt;code&gt;[old-name]&lt;/code&gt; &lt;code&gt;[new-name]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果本地有多个分支，无论你在那个分支做的提交操作提交的都是主分支的改变&lt;br&gt;删除远程仓库后，本地的远程仓库镜像也会跟着消失！&lt;/p&gt;
+&lt;p&gt;分支的衍合&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git checkout &lt;code&gt;branchA&lt;/code&gt;&lt;br&gt;git rebase &lt;code&gt;branchB&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在branchB上把branchA的改动补丁合并，&lt;br&gt;它的原理是回到两个分支最近的共同祖先，根据当前分支（也就是要进行衍合的分支 branchA）后续的历次提交对象（这里只有一个 C3），生成一系列文件补丁，然后以基底分支（也就是主干分支 branchB）最后一个提交对象（C4）为新的出发点，逐个应用之前准备好的补丁文件，最后会生成一个新的合并提交对象（C3’），从而改写 branchA 的提交历史，使它成为 master 分支的直接下游&lt;/p&gt;
+&lt;p&gt;注意：对于提交历史记录，rebase的作用只是把a的记录合并到b上去了，并不会让a的提交记录消失掉&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Git命令大全&quot;&gt;&lt;a href=&quot;#Git命令大全&quot; class=&quot;headerlink&quot; title=&quot;Git命令大全&quot;&gt;&lt;/a&gt;Git命令大全&lt;/h1&gt;&lt;p&gt;安装 &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo yum install git&lt;/p&gt;
+&lt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS中的图形绘制</title>
