@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-06T11:36:11.000Z</updated>
+  <updated>2016-07-06T11:42:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2016/07/06/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/"/>
     <id>http://yoursite.com/2016/07/06/随处可见的UITableView/</id>
     <published>2016-07-06T11:31:27.000Z</published>
-    <updated>2016-07-06T11:36:11.000Z</updated>
+    <updated>2016-07-06T11:42:03.000Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;随处可见的UITableView&quot;&gt;&lt;a href=&quot;#随处可见的UITableView&quot; class=&quot;headerlink&quot; title=&quot;随处可见的UITableView&quot;&gt;&lt;/a&gt;随处可见的UITableView&lt;/h2&gt;&lt;p&gt;iOS中处处可以见到UITableView的使用。&lt;br&gt;系统里UITableView的使用：&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/IMG_1913.jpg&quot; alt=&quot;设置界面&quot;&gt;&lt;br&gt;微信里UITableView的使用：&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/THVE5337.jpg&quot; alt=&quot;微信&quot;&gt;&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/ITSN0039.jpg&quot; alt=&quot;微信朋友圈&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;iOS中处处可以见到UITableView的使用。&lt;br&gt;系统里UITableView的使用：&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/IMG_1913.jpg&quot; alt=&quot;设置界面&quot;&gt;&lt;br&gt;微信里UITableView的使用：&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/THVE5337.jpg&quot; alt=&quot;微信&quot;&gt;&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/ITSN0039.jpg&quot; alt=&quot;微信朋友圈&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITableView_Class/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;UITableView官方文档&lt;/a&gt;&lt;br&gt;UITableView的用途以及如何使用，使用的注意点都可以通过阅读官方文档解读出来&lt;br&gt;你可以过一遍官方文档来了解下UITableView&lt;br&gt;我总结如下&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;1.一个UITableView的实例（下文都用_tableView来表示）用来展示列表信息&lt;/li&gt;
@@ -120,7 +120,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;随处可见的UITableView&quot;&gt;&lt;a href=&quot;#随处可见的UITableView&quot; class=&quot;headerlink&quot; title=&quot;随处可见的UITableView&quot;&gt;&lt;/a&gt;随处可见的UITableView&lt;/h2&gt;&lt;p&gt;iOS中处处可以见到UITableView的使用。&lt;br&gt;系统里UITableView的使用：&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/IMG_1913.jpg&quot; alt=&quot;设置界面&quot;&gt;&lt;br&gt;微信里UITableView的使用：&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/THVE5337.jpg&quot; alt=&quot;微信&quot;&gt;&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A4%84%E5%8F%AF%E8%A7%81%E7%9A%84UITableView/ITSN0039.jpg&quot; alt=&quot;微信朋友圈&quot;&gt;&lt;br&gt;
+      &lt;p&gt;iOS中处处可以见到UITableView的使用。&lt;br&gt;系统里UITableView的使用：&lt;img src=&quot;https://raw.githubusercontent.com/codeTalkCC/ArcitlePhotos/master/%E9%9A%8F%E5%A
     
     </summary>
     
