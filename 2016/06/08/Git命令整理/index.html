@@ -158,14 +158,14 @@
 </blockquote>
 <p><code>[remote-name]</code> 用来指代 <code>[url]</code>,是远程仓库的名称</p>
 <p>本地也有一个远程仓库，可以用<code>git branch -a</code>查看，但是我们是无法更改的！</p>
-<p>添加远程分支</p>
+<p>如果远程没有这个分支，添加远程分支</p>
 <blockquote>
 <p>git push <code>远程仓库名</code> <code>分支名</code></p>
 </blockquote>
 <p>这里其实走了一点捷径。Git 自动把 serverfix 分支名扩展为 refs/heads/serverfix:refs/heads/serverfix，意为“取出我在本地的 serverfix 分支，推送到远程仓库的 serverfix 分支中去”。我们将在第九章进一步介绍 refs/heads/ 部分的细节，不过一般使用的时候都可以省略它。也可以运行 git push origin serverfix:serverfix 来实现相同的效果，它的意思是“上传我本地的 serverfix 分支到远程仓库中去，仍旧称它为 serverfix 分支”。通过此语法，你可以把本地分支推送到某个命名不同的远程分支：若想把远程分支叫作 awesomebranch，可以用 git push origin serverfix:awesomebranch 来推送数据。</p>
-<p>删除远程分支</p>
+<p>如果远程已经有这个分支，删除远程分支</p>
 <blockquote>
-<p>git push <code>远程名</code> :<code>分支名</code></p>
+<p>git push <code>远程仓库名</code> :<code>分支名</code></p>
 </blockquote>
 <p>咚！服务器上的分支没了。你最好特别留心这一页，因为你一定会用到那个命令，而且你很可能会忘掉它的语法。有种方便记忆这条命令的方法：记住我们不久前见过的 git push [远程名] [本地分支]:[远程分支] 语法，如果省略 [本地分支]，那就等于是在说“在这里提取空白然后把它变成[远程分支]”</p>
 <p>拉取远程的更新到本地的“远程仓库”</p>
@@ -203,11 +203,11 @@
 <blockquote>
 <p>git remote rm <code>[remote-name]</code><br>git remote rename <code>[old-name]</code> <code>[new-name]</code></p>
 </blockquote>
-<p>如果本地有多个分支，无论你在那个分支做的提交操作提交的都是主分支的改变<br>删除远程仓库后，本地的远程仓库镜像也会跟着消失！</p>
 <p>分支的衍合</p>
 <blockquote>
 <p>git checkout <code>branchA</code><br>git rebase <code>branchB</code></p>
 </blockquote>
 <p>在branchB上把branchA的改动补丁合并，<br>它的原理是回到两个分支最近的共同祖先，根据当前分支（也就是要进行衍合的分支 branchA）后续的历次提交对象（这里只有一个 C3），生成一系列文件补丁，然后以基底分支（也就是主干分支 branchB）最后一个提交对象（C4）为新的出发点，逐个应用之前准备好的补丁文件，最后会生成一个新的合并提交对象（C3’），从而改写 branchA 的提交历史，<strong>使它成为 master 分支的直接下游</strong></p>
 <p>注意：对于提交历史记录，rebase的作用只是把branchA的记录合并到branchB上去了，并不会让branchA的提交记录消失掉</p>
-</div></article></div></section><footer><div class="paginator"><a href="/2016/05/06/iOS中的图形绘制/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://yoursite.com">zjcai</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+<p>origin</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/07/06/随处可见的UITableView/" class="prev">PREV</a><a href="/2016/05/06/iOS中的图形绘制/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://yoursite.com">zjcai</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
