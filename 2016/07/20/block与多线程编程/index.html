@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> block与多线程编程 · codeTalk</title><meta name="description" content="block与多线程编程 - zjcai"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/codeTalkCC" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/selfAbout.html" target="_self" class="nav-list-link">ABOUT</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">block与多线程编程</h1><div class="post-info">2016年7月20日</div><div class="post-content"><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在iOS开发中，当涉及网络操作及复杂任务的时候，我们就要使用多线程编程，而多线程编程中用到大量的block，本文就来讲讲<strong>Blocks</strong>与<strong>多线程编程</strong></p>
+<h4 id="Blocks的介绍与使用"><a href="#Blocks的介绍与使用" class="headerlink" title="Blocks的介绍与使用"></a>Blocks的介绍与使用</h4><ul>
+<li>什么是Blocks</li>
+<li>Blocks的语法规则</li>
+<li>Blocks的应用</li>
+</ul>
+<h4 id="多线程编程"><a href="#多线程编程" class="headerlink" title="多线程编程"></a>多线程编程</h4><ul>
+<li><p>先搞清楚这些“概念”</p>
+<ul>
+<li><p>线程</p>
+</li>
+<li><p>进程</p>
+</li>
+<li><p>任务</p>
+</li>
+<li><p>队列</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>多线程编程基本规则</p>
+</li>
+<li><p>多线程编程的应用</p>
+</li>
+</ul>
+<hr>
+<a id="more"></a>
+<p><strong>什么是Blocks</strong></p>
+<p>Blocks 也称为 <code>块</code>， 块是对C语言的一种扩展。它并未作为标准ANSI C所定义的部分，而是由Apple公司添加到语言中的。块看起来更像是函数。你可以给块传递参数，正如给函数传递参数一样。块也具有返回值。与函数不同的是，<strong>块定义在函数或者方法内部</strong>，并能防伪在函数或者方法范围内块之外的任何变量。一般来说，这些变量能够访问但是并不能够改变这些变量的值。有一个特殊的块修改器（由块前面含有两个下画线的字符组成）能够修改块内变量的值。<br><strong>块能够作为参数传递给函数或者方法,块的其中一个优势在于能够让系统分配给其他处理器或应用的其他线程执行。</strong>,</p>
+<p><strong>Blocks的语法规则</strong></p>
+<ul>
+<li>块的定义/实现：</li>
+</ul>
+<p>以字符<code>^</code>开头为标识，后面跟一个括号便是所需要的参数列表,后面再有一对中括号表示块的实现内容</p>
+<ul>
+<li>块的声明：<code>返回类型声明</code> <code>(^变量名)</code> <code>(参数列表)</code></li>
+</ul>
+<p>参数列表里类型声明之后局部变量可有可无，当你把块作为参数传递的时候，建议带上（带上的话使得代码更加整洁美观），不带也可以，就是你每次都要自己加局部变量，比较麻烦和费劲一点</p>
+<ul>
+<li>为块设置别名</li>
+</ul>
+<p><code>typedef void (^Blo) (NSString *s1,UIColor *color);</code></p>
+<p><strong>Blocks的应用</strong></p>
+<p>示例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line"></span><br><span class="line">typedef void (^Blo) (NSString *s1,UIColor *color);</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    // Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">    self.title = @&quot;BlockDemo&quot;;</span><br><span class="line">    [self block];</span><br><span class="line">    [self test:^(NSString *s1, UIColor *color) &#123;</span><br><span class="line">        NSLog(@&quot;在代码中看情况实现1%@&quot;,s1);</span><br><span class="line">        self.view.backgroundColor = color;</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    [self test2:^(NSString *s1, UIColor *color) &#123;</span><br><span class="line">        NSLog(@&quot;在代码中看情况实现2%@&quot;,s1);</span><br><span class="line">        self.view.backgroundColor = color;</span><br><span class="line">        </span><br><span class="line">    &#125;];</span><br><span class="line"> </span><br><span class="line">    </span><br><span class="line">    //</span><br><span class="line">    Blo testBlockTy = ^(NSString *s1, UIColor *color) &#123;</span><br><span class="line">        NSLog(@&quot;利用别名声明变量并传个实现好的block: %@&quot;,s1);</span><br><span class="line">        self.view.backgroundColor = color;</span><br><span class="line">        </span><br><span class="line">    &#125;;</span><br><span class="line">    [self test:testBlockTy];</span><br><span class="line">    [self test2:testBlockTy];</span><br><span class="line">    </span><br><span class="line">    void (^originBlock)(NSString *s, UIColor *a)= ^(NSString *s1, UIColor *color) &#123;</span><br><span class="line">        NSLog(@&quot;原生声明变量并传个实现好的block: %@&quot;,s1);</span><br><span class="line">        self.view.backgroundColor = color;</span><br><span class="line">        </span><br><span class="line">    &#125;;</span><br><span class="line">    [self test:originBlock];</span><br><span class="line">    [self test2:originBlock];</span><br><span class="line">    </span><br><span class="line">    [self test2:^(NSString *x, UIColor *y) &#123;</span><br><span class="line">        NSLog(@&quot;在代码中看情况实现(自定义block中局部变量)%@&quot;,x);</span><br><span class="line">        self.view.backgroundColor = y;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)test:(Blo)block&#123;</span><br><span class="line">    block(@&quot;str&quot;,[UIColor redColor]);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)test2:(void (^)(NSString *, UIColor *))block&#123;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    block(@&quot;fuck&quot;,[UIColor blueColor]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)block&#123;</span><br><span class="line">    </span><br><span class="line">    //不带参数</span><br><span class="line">    void (^printMessage) (void) = ^ (void)&#123;</span><br><span class="line">        NSLog(@&quot;programing is fun.&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line">    printMessage();</span><br><span class="line">    </span><br><span class="line">    //带一个参数，x可有可无</span><br><span class="line">    void (^calculateTriangularNumber) (int x) = ^ (int n)&#123;</span><br><span class="line">    </span><br><span class="line">        int i,sum = 0;</span><br><span class="line">        for (i = 0; i &lt; n; i ++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        NSLog(@&quot;Triangular number %i is %i&quot;,n,sum);</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    calculateTriangularNumber(10);</span><br><span class="line">    calculateTriangularNumber(20);</span><br><span class="line">    calculateTriangularNumber(50);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    //带2个参数返回它们和</span><br><span class="line">    int (^sumOf)(int,int) = ^ (int i, int j)&#123;</span><br><span class="line">    </span><br><span class="line">        int sum = i + j;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;;</span><br><span class="line">    int result = sumOf(10,5);</span><br><span class="line">    NSLog(@&quot;%i&quot;,result);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大家自己可以试一遍，test与test2的区别不只是block类型声明方式的区别，test的block声明带了参数（不带也可以），test2的block声明没带参数。调用的时候“xcode”自动补全的时候有很大区别哦！试一遍就知道我为什么在block声明的时候建议<strong><code>当你把块作为参数传递的时候，建议带上局部变量</code></strong></p>
+<p><strong>先搞清楚这些“概念”</strong></p>
+<p>关于多线程编程在硬件方面的体现：</p>
+<p>现在无论windows还是macOS，实现并发的都是“多任务系统”。首先，所有的应用程序已进程和线程方式运行，CPU的分配方式采用了抢占式，就是说操作系统可以强制吧CPU的资源分配给目前最需要的程序。<br>并发（Concurrentcy）与并行（Parallelism）。多核或多个CPU才可能发生并行，如果是单核，单CPU只能发生并发行为。<br>如果有人认为单核单CPU的并发就是同时执行很多任务，那么这个是错觉。并行是针对时刻的，同一个时刻同时处理。并行是针对任务，事件的，2件事同时完成那就是并发。如果是并行，那就一定是并发。反之，则不一定。</p>
+<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
+<ul>
+<li>Pthreads</li>
+<li>NSThread</li>
+<li>GCD</li>
+<li><p>NSOperation &amp; NSOperationQueue</p>
+<p>这里值讲GCD</p>
+</li>
+</ul>
+<p>基本概念的理解：</p>
+<ul>
+<li><p>线程</p>
+<p> 程序中独立运行的代码段。（例如：接收QQ消息的代码）<br>一个进程是由一或多个线程组成。进程只负责资源的调度和分配，线程才是程序真正的执行单元，负责代码的执行。</p>
+</li>
+<li><p>进程</p>
+<p>一个正在运行的程序可以看做一个进程。（例如：正在运行的QQ就是一个进程），进程拥有独立运行所需的全部资源</p>
+</li>
+<li><p>任务</p>
+<p> 即操作，你想要干什么，说白了就是一段代码，在 GCD 中就是一个 Block，所以添加任务十分方便。任务有两种执行方式： 同步执行 和 异步执行，他们之间的区别是 是否会创建新的线程。</p>
+</li>
+<li><p>队列</p>
+<p>用于存放任务。一共有两种队列， 串行队列 和 并行队列。</p>
+</li>
+</ul>
+<p><strong>多线程编程的基本规则</strong></p>
+<p>GCD的基本思想就是把<code>任务</code>加到<code>队列</code>中<code>同步</code>(<code>异步</code>)执行</p>
+<p>串行队列：</p>
+<ul>
+<li><p>1 获取主队列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_main_queue();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2 自己创建串行队列</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;demoQueue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;demoQueue&quot;, NULL);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>并行队列：</p>
+<ul>
+<li><p>1 获取全局并发队列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>2 自己创建并发队列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;demoQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center">同步执行</th>
+<th style="text-align:right">异步执行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">串行队列</td>
+<td style="text-align:center">当前线程，一个一个执行</td>
+<td style="text-align:right">其他线程，一个一个执行</td>
+</tr>
+<tr>
+<td style="text-align:left">并行队列</td>
+<td style="text-align:center">当前线程，一个一个执行</td>
+<td style="text-align:right">开很多线程，一起执行</td>
+</tr>
+</tbody>
+</table>
+<p>  如果是 同步（sync） 操作，它会阻塞当前线程并等待 Block 中的任务执行完毕，然后当前线程才会继续往下运行。</p>
+<p> 如果是 异步（async）操作，当前线程会直接往下执行，它不会阻塞当前线程。</p>
+<p> 一但在串行队列中同步执行任务就会产生死锁现象 - 同步执行时，当前queue阻塞，新的任务加到当前queue中，等待当前queue前面的任务执行完毕，然后它就会永远在那里等待，因为当前queue已经阻塞了。</p>
+<p> <strong>多线程编程的应用</strong></p>
+<p> 1.一些网络请求，耗时的操作你可以先异步执行并行队列，然后回调（请求有回应）的时候再到主线程更新UI</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">           [g_sdkObject commonSend:kCommonSendUrl funName:@&quot;getDayOfMilk&quot; param:@&quot;&quot; data:dic enc:0 success:^(NSInteger retCode, NSData *retData) &#123;</span><br><span class="line">               dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">                   NSDictionary *dic = [NSDictionary dictionaryWithXMLData:retData];</span><br><span class="line">                   NSDictionary *resultDic = dic[@&quot;result&quot;][@&quot;items&quot;][@&quot;item&quot;];</span><br><span class="line">                   if ([resultDic isKindOfClass:[NSDictionary class]]) &#123;</span><br><span class="line">                       g_currentBaby.milkDrinked = [resultDic[@&quot;milkPowder&quot;]integerValue];</span><br><span class="line">                   &#125;</span><br><span class="line">                   NSLog(@&quot;%@&quot;,dic);</span><br><span class="line">                   block(retCode);</span><br><span class="line">               &#125;);</span><br><span class="line">               </span><br><span class="line">               //</span><br><span class="line">               </span><br><span class="line">           &#125; failure:^(NSInteger errCode) &#123;</span><br><span class="line">               //</span><br><span class="line">           &#125;];</span><br></pre></td></tr></table></figure>
+<p> 2.当遇到需要执行多个线程并发执行，然后等多个线程都结束之后，再汇总执行结果时可以用group queue</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> dispatch_queue_t conCurrentGlobalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">dispatch_group_t groupQueue = dispatch_group_create();</span><br><span class="line">NSLog(@&quot;current task&quot;);</span><br><span class="line">dispatch_group_async(groupQueue, conCurrentGlobalQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;并行任务1&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_async(groupQueue, conCurrentGlobalQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;并行任务2&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_notify(groupQueue, mainQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;groupQueue中的任务 都执行完成,回到主线程更新UI&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">NSLog(@&quot;next task&quot;);</span><br></pre></td></tr></table></figure>
+<p> 3.在当前线程阻塞的同步等待dispatch_group_wait</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> dispatch_group_t groupQueue = dispatch_group_create();</span><br><span class="line">dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC);</span><br><span class="line">dispatch_queue_t conCurrentGlobalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">NSLog(@&quot;current task&quot;);</span><br><span class="line">dispatch_group_async(groupQueue, conCurrentGlobalQueue, ^&#123;</span><br><span class="line"></span><br><span class="line">   long isExecuteOver = dispatch_group_wait(groupQueue, delayTime);</span><br><span class="line">   if (isExecuteOver) &#123;</span><br><span class="line">       NSLog(@&quot;wait over&quot;);</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">       NSLog(@&quot;not over&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   NSLog(@&quot;并行任务1&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_async(groupQueue, conCurrentGlobalQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;并行任务2&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+<pre><code> current task
+
+并行任务2
+
+wait over
+
+ 并行任务1
+</code></pre><ol>
+<li>dispatch_after延时添加到队列</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dispatch_time_t delayTime3 = dispatch_time(DISPATCH_TIME_NOW, 3*NSEC_PER_SEC);</span><br><span class="line">dispatch_time_t delayTime2 = dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);</span><br><span class="line">dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">NSLog(@&quot;current task&quot;);</span><br><span class="line">dispatch_after(delayTime3, mainQueue, ^&#123;</span><br><span class="line">  NSLog(@&quot;3秒之后添加到队列&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_after(delayTime2, mainQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;2秒之后添加到队列&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">NSLog(@&quot;next task&quot;);</span><br></pre></td></tr></table></figure>
+<p>5.dispatch_apply在给定的队列上多次执行某一任务，在主线程直接调用会阻塞主线程去执行block中的任务,它的本质就是同步执行。所以会阻塞队列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);</span><br><span class="line">NSLog(@&quot;current task&quot;);</span><br><span class="line">dispatch_async(globalQueue, ^&#123;</span><br><span class="line">dispatch_queue_t applyQueue = dispatch_get_global_queue(0, 0);</span><br><span class="line">//第一个参数，3--block执行的次数</span><br><span class="line">//第二个参数，applyQueue--block任务提交到的队列</span><br><span class="line">//第三个参数，block--需要重复执行的任务</span><br><span class="line">dispatch_apply(3, applyQueue, ^(size_t index) &#123;</span><br><span class="line">      NSLog(@&quot;current index %@&quot;,@(index));</span><br><span class="line">      sleep(1);</span><br><span class="line">&#125;);</span><br><span class="line">NSLog(@&quot;dispatch_apply 执行完成&quot;);</span><br><span class="line">dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">dispatch_async(mainQueue, ^&#123;</span><br><span class="line">      NSLog(@&quot;回到主线程更新UI&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;);</span><br><span class="line">NSLog(@&quot;next task&quot;);</span><br></pre></td></tr></table></figure>
+<p>6.dispatch_once保证在app运行期间，block中的代码只执行一次 - 用于单例</p>
+<p>7.dispatch_barrier_async 栅栏的作用</p>
+<p>功能：是在并行队列中，等待在dispatch_barrier_async之前加入的队列全部执行完成之后（这些任务是并发执行的）再执行dispatch_barrier_async中的任务，dispatch_barrier_async中的任务执行完成之后，再去执行在dispatch_barrier_async之后加入到队列中的任务（这些任务是并发执行的）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_queue_t conCurrentQueue = dispatch_queue_create(&quot;com.dullgrass.conCurrentQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">dispatch_async(conCurrentQueue, ^&#123;</span><br><span class="line">  NSLog(@&quot;dispatch 1&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_async(conCurrentQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;dispatch 2&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_barrier_async(conCurrentQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;dispatch barrier&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_async(conCurrentQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;dispatch 3&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_async(conCurrentQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;dispatch 4&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>输出是1，2，3，4</p>
+<p>有些我没有贴上输出，大家自己去试试。</p>
+<p>第三部分大量的内容来自参考资料<br>原文链接：<a href="http://www.jianshu.com/p/ae786a4cf3b1" target="_blank" rel="external">简书</a></p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/07/06/随处可见的UITableView/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://yoursite.com">zjcai</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
