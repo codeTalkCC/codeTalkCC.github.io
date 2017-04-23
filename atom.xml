@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-11T12:22:29.000Z</updated>
+  <updated>2017-04-23T08:52:28.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,114 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>swift初探</title>
+    <link href="http://yoursite.com/2017/04/23/swift%E5%88%9D%E6%8E%A2/"/>
+    <id>http://yoursite.com/2017/04/23/swift初探/</id>
+    <published>2017-04-23T08:40:40.000Z</published>
+    <updated>2017-04-23T08:52:28.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Swift初探&quot;&gt;&lt;a href=&quot;#Swift初探&quot; class=&quot;headerlink&quot; title=&quot;Swift初探&quot;&gt;&lt;/a&gt;Swift初探&lt;/h1&gt;&lt;h2 id=&quot;总览&quot;&gt;&lt;a href=&quot;#总览&quot; class=&quot;headerlink&quot; title=&quot;总览&quot;&gt;&lt;/a&gt;总览&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/Swift_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Swift&lt;/a&gt;)是一种支持多&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;编程范式&lt;/a&gt;的编程语言，是用来撰写macOS，iOS，watchOS,和tvOS的语言之一。苹果宣称Swift的特点是：快速、现代、安全、互动，而且明显优于Objective-C语言。Swift以&lt;a href=&quot;https://zh.wikipedia.org/wiki/LLVM&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LLVM&lt;/a&gt;编译，可以使用现有的Cocoa和Cocoa Touch框架。Swift取消了Objective-C的指针及其他不安全访问的使用，并舍弃Objective C早期套用Smalltalk之语法，全面改为句点表示法（dot-notation）。同许多脚本语言一样，Swift可以推断变量类型（var, variant）。同时，它提供了类似C++、C#的名字空间（namespace）、泛型（generic）、运算对象重载（operator overloading）。Swift被简单的形容为 “没有C的Objective-C”（Objective-C without the C）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编程语言之swift&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;基础知识之关键字&quot;&gt;&lt;a href=&quot;#基础知识之关键字&quot; class=&quot;headerlink&quot; title=&quot;基础知识之关键字&quot;&gt;&lt;/a&gt;基础知识之关键字&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;let&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以用let声明一个常量，常量不可以被改变，引用类型，如类等的常量，属性是可以被改变的,swift中有类型推断，下文中的myConstant被推断为&lt;code&gt;Int&lt;/code&gt;类型,也可以显示的声明变量，常量的类型，在名字之后加：然后紧跟类型即可（这是不被推荐的写法，除非你有特殊的需要）&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let myConstant = 50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let myConstant2:Int = 50&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;var&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以用var声明一个变量，变量可以被改变,但是你不能赋给变量一个不是这个类型的值，关于变量类型，&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var myVarible = 22.0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;myVarible = 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;控制流&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;if&lt;/li&gt;
+&lt;li&gt;switch&lt;/li&gt;
+&lt;li&gt;for in&lt;/li&gt;
+&lt;li&gt;while&lt;/li&gt;
+&lt;li&gt;repeat while&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;“A while loop performs a set of statements until a condition becomes false. ”&lt;/p&gt;
+&lt;p&gt;函数与闭包(Functions and Closures)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;func&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Functions are a &lt;a href=&quot;http://stackoverflow.com/questions/599978/what-is-a-first-class-type&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;first-class type&lt;/a&gt;. This means that a function can return another function as its value&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;func greet(person: String, day: String) -&amp;gt; String &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return &amp;quot;Hello \(person), today is \(day).&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;greet(person: &amp;quot;Bob&amp;quot;, day: &amp;quot;Tuesday&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;{(parameters)-&amp;gt; returnType}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Functions are actually a special case of closures: blocks of code that can be called later. &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;numbers.map(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    (number: Int) -&amp;gt; Int in&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    let result = 3 * number&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return result&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其他&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;class&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;声明一个类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;enum&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;声明一个枚举&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;struct&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;声明一个结构体&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;protocol&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;声明一个协议&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;extension&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;声明一个分类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt; T &amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这是泛型的写法&lt;/p&gt;
+&lt;h2 id=&quot;基础知识之语法&quot;&gt;&lt;a href=&quot;#基础知识之语法&quot; class=&quot;headerlink&quot; title=&quot;基础知识之语法&quot;&gt;&lt;/a&gt;基础知识之语法&lt;/h2&gt;&lt;p&gt;用&lt;code&gt;let&lt;/code&gt; &lt;code&gt;var&lt;/code&gt;声明变量和常量，&lt;br&gt;&lt;code&gt;if&lt;/code&gt;和optional类型有一个搭配用法&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var optionalName:String? = nil//&amp;quot;John Appleseed&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var greeting = &amp;quot;Hello!&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if let name = optionalName&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    greeting = &amp;quot;Hello \(name)&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    greeting = &amp;quot;The name is nil&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(greeting)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这代码的意思是如果optionalName为空，则跳else，不为空，则吧optionalName解包并把这个非空的值赋值给name，并且你可以在if的分支里使用这个变量&lt;/p&gt;
+&lt;p&gt;func声明的函数，可以作为返回值，可以作为参数，也可以嵌套&lt;/p&gt;
+&lt;p&gt;关于闭包，枚举，结构体我在下一篇详细讲，在swift中，枚举和结构体几乎适合类一样的存在。&lt;/p&gt;
+&lt;p&gt;private ， static等的意义&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Swift初探&quot;&gt;&lt;a href=&quot;#Swift初探&quot; class=&quot;headerlink&quot; title=&quot;Swift初探&quot;&gt;&lt;/a&gt;Swift初探&lt;/h1&gt;&lt;h2 id=&quot;总览&quot;&gt;&lt;a href=&quot;#总览&quot; class=&quot;headerlink&quot; title=&quot;总
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>把你的.framework部署在cocoapods</title>
+    <link href="http://yoursite.com/2017/04/12/%E6%8A%8A%E4%BD%A0%E7%9A%84.framework%E9%83%A8%E7%BD%B2%E5%9C%A8cocoapods/"/>
+    <id>http://yoursite.com/2017/04/12/把你的.framework部署在cocoapods/</id>
+    <published>2017-04-12T05:50:41.000Z</published>
+    <updated>2017-04-12T07:29:15.000Z</updated>
+    
+    <content type="html">&lt;p&gt;参考资料&lt;br&gt;&lt;a href=&quot;https://cocoapods.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考资料&lt;br&gt;&lt;a href=&quot;https://cocoapods.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>如何做一个xx.framework</title>
     <link href="http://yoursite.com/2017/03/28/%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AAxx.framework/"/>
     <id>http://yoursite.com/2017/03/28/如何做一个xx.framework/</id>
     <published>2017-03-28T10:20:34.000Z</published>
-    <updated>2017-04-11T12:22:29.000Z</updated>
+    <updated>2017-04-11T12:27:46.000Z</updated>
     
     <content type="html">&lt;h4 id=&quot;你所需要了解的基础知识&quot;&gt;&lt;a href=&quot;#你所需要了解的基础知识&quot; class=&quot;headerlink&quot; title=&quot;你所需要了解的基础知识&quot;&gt;&lt;/a&gt;你所需要了解的基础知识&lt;/h4&gt;&lt;p&gt;一、什么是库？&lt;/p&gt;
 &lt;p&gt;库是共享程序代码的方式，一般分为静态库和动态库。&lt;/p&gt;
@@ -48,20 +151,19 @@
 &lt;p&gt;2 图片资源的处理：两种静态库，一般都是把图片文件单独的放在一个.bundle文件中，一般.bundle的名字和.a或.framework的名字相同。.bundle文件很好弄，新建一个文件夹，把它改名为.bundle就可以了，右键，显示包内容可以向其中添加图片资源。&lt;/p&gt;
 &lt;p&gt;3 category是我们实际开发项目中经常用到的，把category打成静态库是没有问题的，但是在用这个静态库的工程中，调用category中的方法时会有找不到该方法的运行时错误（selector not recognized），解决办法是：在使用静态库的工程中配置other linker flags的值为-ObjC。&lt;/p&gt;
 &lt;p&gt;4 如果一个静态库很复杂，需要暴露的.h比较多的话，就可以在静态库的内部创建一个.h文件（一般这个.h文件的名字和静态库的名字相同,系统自动帮我们创建好了），然后把所有需要暴露出来的.h文件都集中放在这个.h文件中，而那些原本需要暴露的.h都不需要再暴露了，只需要把.h暴露出来就可以了。&lt;/p&gt;
-&lt;h4 id=&quot;实战演练&quot;&gt;&lt;a href=&quot;#实战演练&quot; class=&quot;headerlink&quot; title=&quot;实战演练&quot;&gt;&lt;/a&gt;实战演练&lt;/h4&gt;&lt;p&gt;######1.新建工程&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://i2.muimg.com/567571/c40c11417c09daf8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;实战演练&quot;&gt;&lt;a href=&quot;#实战演练&quot; class=&quot;headerlink&quot; title=&quot;实战演练&quot;&gt;&lt;/a&gt;实战演练&lt;/h4&gt;&lt;h6 id=&quot;1-新建工程&quot;&gt;&lt;a href=&quot;#1-新建工程&quot; class=&quot;headerlink&quot; title=&quot;1.新建工程&quot;&gt;&lt;/a&gt;1.新建工程&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;http://i2.muimg.com/567571/c40c11417c09daf8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;选择第一个，第二个CoCoa Touch Static Library是创建静态库的，Cocoa Touch Framework是动态静态都可以，这取决于下图中的设置，你可以选择静态的还是动态的&lt;br&gt;&lt;img src=&quot;http://i2.muimg.com/567571/84a9a0b112e44151.jpg&quot; alt=&quot;选择库的类型&quot;&gt;&lt;/p&gt;
-&lt;p&gt;######2.添加代码文件&lt;br&gt;&lt;img src=&quot;http://i4.buimg.com/567571/847693e2a5e2cbbf.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;######3.选择你要公开的文件&lt;br&gt;&lt;img src=&quot;http://i4.buimg.com/567571/4a1da8a2baf2e742.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;######4.framework的打包&lt;br&gt;这里我要说明一下，如果你直接运行的话，项目下的Products下会有个framework，这个framework取决于你运行环境，模拟器运行的只能在模拟器上跑，真机运行的只能在真机上跑。如果你真机上运行生成的sdk放到模拟器上，会报类似的错误&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/ce4dbcabdf313981.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;2-添加代码文件&quot;&gt;&lt;a href=&quot;#2-添加代码文件&quot; class=&quot;headerlink&quot; title=&quot;2.添加代码文件&quot;&gt;&lt;/a&gt;2.添加代码文件&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;http://i4.buimg.com/567571/847693e2a5e2cbbf.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;3-选择你要公开的文件&quot;&gt;&lt;a href=&quot;#3-选择你要公开的文件&quot; class=&quot;headerlink&quot; title=&quot;3.选择你要公开的文件&quot;&gt;&lt;/a&gt;3.选择你要公开的文件&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;http://i4.buimg.com/567571/4a1da8a2baf2e742.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;4-framework的打包&quot;&gt;&lt;a href=&quot;#4-framework的打包&quot; class=&quot;headerlink&quot; title=&quot;4.framework的打包&quot;&gt;&lt;/a&gt;4.framework的打包&lt;/h6&gt;&lt;p&gt;这里我要说明一下，如果你直接运行的话，项目下的Products下会有个framework，这个framework取决于你运行环境，模拟器运行的只能在模拟器上跑，真机运行的只能在真机上跑。如果你真机上运行生成的sdk放到模拟器上，会报类似的错误&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/ce4dbcabdf313981.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;怎样才能制作出通用的sdk呢？&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;目前有两种方式，第一种是分别在两种环境下运行生成各自的framework，通过命令行的方式合成一个通用的framework，这种方式我觉得太繁琐，我不做介绍了。&lt;br&gt;我来讲解下第二种&lt;br&gt;首先添加一个target&lt;br&gt;&lt;img src=&quot;http://i4.buimg.com/567571/f477cd9f079128c9.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://i2.muimg.com/567571/a824447b7dd9e8db.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;然后添加一个shell脚本&lt;br&gt;&lt;img src=&quot;http://i4.buimg.com/567571/e602dfebb2ba737b.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;里面填入内容：&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# Sets the target folders and the final framework product.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FMK_NAME=$&amp;#123;PROJECT_NAME&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Install dir will be the final output to the framework.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# The following line create it in the root folder of the current project.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;INSTALL_DIR=$&amp;#123;SRCROOT&amp;#125;/Products/$&amp;#123;FMK_NAME&amp;#125;.framework&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Working dir will be deleted after the framework creation.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;WRK_DIR=build&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DEVICE_DIR=$&amp;#123;WRK_DIR&amp;#125;/Release-iphoneos/$&amp;#123;FMK_NAME&amp;#125;.framework&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SIMULATOR_DIR=$&amp;#123;WRK_DIR&amp;#125;/Release-iphonesimulator/$&amp;#123;FMK_NAME&amp;#125;.framework&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# -configuration $&amp;#123;CONFIGURATION&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Clean and Building both architectures.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xcodebuild -configuration &amp;quot;Release&amp;quot; -target &amp;quot;$&amp;#123;FMK_NAME&amp;#125;&amp;quot; -sdk iphoneos clean build&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xcodebuild -configuration &amp;quot;Release&amp;quot; -target &amp;quot;$&amp;#123;FMK_NAME&amp;#125;&amp;quot; -sdk iphonesimulator clean build&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Cleaning the oldest.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if [ -d &amp;quot;$&amp;#123;INSTALL_DIR&amp;#125;&amp;quot; ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;then&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rm -rf &amp;quot;$&amp;#123;INSTALL_DIR&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;fi&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mkdir -p &amp;quot;$&amp;#123;INSTALL_DIR&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp -R &amp;quot;$&amp;#123;DEVICE_DIR&amp;#125;/&amp;quot; &amp;quot;$&amp;#123;INSTALL_DIR&amp;#125;/&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;lipo -create &amp;quot;$&amp;#123;DEVICE_DIR&amp;#125;/$&amp;#123;FMK_NAME&amp;#125;&amp;quot; &amp;quot;$&amp;#123;SIMULATOR_DIR&amp;#125;/$&amp;#123;FMK_NAME&amp;#125;&amp;quot; -output &amp;quot;$&amp;#123;INSTALL_DIR&amp;#125;/$&amp;#123;FMK_NAME&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rm -r &amp;quot;$&amp;#123;WRK_DIR&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;open &amp;quot;$&amp;#123;INSTALL_DIR&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;然后选择这个新建的target运行就好了&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/593f2756606aa707.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;会自动生成一个framework，然后主动弹出来&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/d5f4fa474af5f719.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;尽情的使用它吧，以下是我的测试结果，就打印了一点东西&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/b0ac56a4f7fb3165.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;######一些注意事项,如下图所示&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/794d3c2a5fae89e5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;一些注意事项-如下图所示&quot;&gt;&lt;a href=&quot;#一些注意事项-如下图所示&quot; class=&quot;headerlink&quot; title=&quot;一些注意事项,如下图所示&quot;&gt;&lt;/a&gt;一些注意事项,如下图所示&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;http://i1.piimg.com/567571/794d3c2a5fae89e5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Build Active Architecture Only?的意思是只编译当前的运行设备所需的framework吗？我选择了debug的时候是的，release的时候为否，毕竟打包出去的framework要支持各种设备型号，调试的时候只编译一个就行了&lt;/p&gt;
-&lt;p&gt;######参考资料&lt;br&gt;&lt;a href=&quot;http://www.jianshu.com/p/87dbf57cfe4a&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS封装功能生成 .framework&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.jianshu.com/p/155a3cfb765e&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS静态库SDK制作（包含第三方静态库）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://realm.io/cn/news/altconf-conrad-kramer-writing-iOS-sdk/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;如何编写一个（不）受欢迎的 iOS SDK&lt;/a&gt;&lt;/p&gt;
+&lt;h6 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h6&gt;&lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/p/87dbf57cfe4a&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS封装功能生成 .framework&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.jianshu.com/p/155a3cfb765e&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS静态库SDK制作（包含第三方静态库）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://realm.io/cn/news/altconf-conrad-kramer-writing-iOS-sdk/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;如何编写一个（不）受欢迎的 iOS SDK&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">

@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> swift初探 · codeTalk</title><meta name="description" content="swift初探 - zjcai"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/codeTalkCC" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/selfAbout.html" target="_self" class="nav-list-link">ABOUT</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">swift初探</h1><div class="post-info">2017年4月23日</div><div class="post-content"><h1 id="Swift初探"><a href="#Swift初探" class="headerlink" title="Swift初探"></a>Swift初探</h1><h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><p><a href="https://zh.wikipedia.org/wiki/Swift_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80" target="_blank" rel="external">Swift</a>)是一种支持多<a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B" target="_blank" rel="external">编程范式</a>的编程语言，是用来撰写macOS，iOS，watchOS,和tvOS的语言之一。苹果宣称Swift的特点是：快速、现代、安全、互动，而且明显优于Objective-C语言。Swift以<a href="https://zh.wikipedia.org/wiki/LLVM" target="_blank" rel="external">LLVM</a>编译，可以使用现有的Cocoa和Cocoa Touch框架。Swift取消了Objective-C的指针及其他不安全访问的使用，并舍弃Objective C早期套用Smalltalk之语法，全面改为句点表示法（dot-notation）。同许多脚本语言一样，Swift可以推断变量类型（var, variant）。同时，它提供了类似C++、C#的名字空间（namespace）、泛型（generic）、运算对象重载（operator overloading）。Swift被简单的形容为 “没有C的Objective-C”（Objective-C without the C）。</p>
+<ul>
+<li>编程语言之swift</li>
+</ul>
+<h2 id="基础知识之关键字"><a href="#基础知识之关键字" class="headerlink" title="基础知识之关键字"></a>基础知识之关键字</h2><ul>
+<li>let</li>
+</ul>
+<p>可以用let声明一个常量，常量不可以被改变，引用类型，如类等的常量，属性是可以被改变的,swift中有类型推断，下文中的myConstant被推断为<code>Int</code>类型,也可以显示的声明变量，常量的类型，在名字之后加：然后紧跟类型即可（这是不被推荐的写法，除非你有特殊的需要）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let myConstant = 50</span><br><span class="line">let myConstant2:Int = 50</span><br></pre></td></tr></table></figure>
+<ul>
+<li>var</li>
+</ul>
+<p>可以用var声明一个变量，变量可以被改变,但是你不能赋给变量一个不是这个类型的值，关于变量类型，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var myVarible = 22.0</span><br><span class="line">myVarible = 1</span><br></pre></td></tr></table></figure>
+<p>控制流</p>
+<ul>
+<li>if</li>
+<li>switch</li>
+<li>for in</li>
+<li>while</li>
+<li>repeat while</li>
+</ul>
+<p>“A while loop performs a set of statements until a condition becomes false. ”</p>
+<p>函数与闭包(Functions and Closures)</p>
+<ul>
+<li>func</li>
+</ul>
+<p>Functions are a <a href="http://stackoverflow.com/questions/599978/what-is-a-first-class-type" target="_blank" rel="external">first-class type</a>. This means that a function can return another function as its value</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func greet(person: String, day: String) -&gt; String &#123;</span><br><span class="line">    return &quot;Hello \(person), today is \(day).&quot;</span><br><span class="line">&#125;</span><br><span class="line">greet(person: &quot;Bob&quot;, day: &quot;Tuesday&quot;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>{(parameters)-&gt; returnType}</li>
+</ul>
+<p>Functions are actually a special case of closures: blocks of code that can be called later. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">numbers.map(&#123;</span><br><span class="line">    (number: Int) -&gt; Int in</span><br><span class="line">    let result = 3 * number</span><br><span class="line">    return result</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>其他</p>
+<ul>
+<li>class</li>
+</ul>
+<p>声明一个类</p>
+<ul>
+<li>enum</li>
+</ul>
+<p>声明一个枚举</p>
+<ul>
+<li>struct</li>
+</ul>
+<p>声明一个结构体</p>
+<ul>
+<li>protocol</li>
+</ul>
+<p>声明一个协议</p>
+<ul>
+<li>extension</li>
+</ul>
+<p>声明一个分类</p>
+<ul>
+<li>&lt; T &gt;</li>
+</ul>
+<p>这是泛型的写法</p>
+<h2 id="基础知识之语法"><a href="#基础知识之语法" class="headerlink" title="基础知识之语法"></a>基础知识之语法</h2><p>用<code>let</code> <code>var</code>声明变量和常量，<br><code>if</code>和optional类型有一个搭配用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var optionalName:String? = nil//&quot;John Appleseed&quot;</span><br><span class="line">var greeting = &quot;Hello!&quot;</span><br><span class="line"></span><br><span class="line">if let name = optionalName&#123;</span><br><span class="line">    greeting = &quot;Hello \(name)&quot;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    greeting = &quot;The name is nil&quot;</span><br><span class="line">&#125;</span><br><span class="line">print(greeting)</span><br></pre></td></tr></table></figure>
+<p>这代码的意思是如果optionalName为空，则跳else，不为空，则吧optionalName解包并把这个非空的值赋值给name，并且你可以在if的分支里使用这个变量</p>
+<p>func声明的函数，可以作为返回值，可以作为参数，也可以嵌套</p>
+<p>关于闭包，枚举，结构体我在下一篇详细讲，在swift中，枚举和结构体几乎适合类一样的存在。</p>
+<p>private ， static等的意义</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/04/12/把你的.framework部署在cocoapods/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2017 <a href="http://yoursite.com">zjcai</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
